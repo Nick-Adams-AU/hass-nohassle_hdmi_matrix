@@ -220,7 +220,8 @@ class HDMIMatrixZone(MediaPlayerEntity):
                 data = urllib.parse.urlencode({'o' + self._zone_id: idx}).encode('utf-8')
                 req =  urllib.request.Request('http://{self._hdmi_host}/video.set', data=data)
                 _LOGGER.debug('Sending %s', data)
-                urllib.request.urlopen(req)
+                resp = urllib.request.urlopen(req)
+                _LOGGER.debug('Resp %s', resp.getcode())
             except:
                 pass
         
