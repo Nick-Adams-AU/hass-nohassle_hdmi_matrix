@@ -3,6 +3,7 @@ import json
 import logging
 import datetime
 import urllib.request
+import urllib.parse
 import voluptuous as vol
 
 from homeassistant.components.media_player import (
@@ -216,7 +217,9 @@ class HDMIMatrixZone(MediaPlayerEntity):
             
         if self._api_mode == 1:
             try:
-                urllib.request.urlopen(f'http://{self._hdmi_host}/@PORT{self._zone_id}={idx}.0', timeout=5)
+                data = urllib.parse.urlencode({@PORT{self._zone_id}: idx}}).encode('utf-8')
+                req =  urllib.request.Request('http://{self._hdmi_host}/video.set', data=data)
+                urllib.request.urlopen(req)
             except:
                 pass
         
