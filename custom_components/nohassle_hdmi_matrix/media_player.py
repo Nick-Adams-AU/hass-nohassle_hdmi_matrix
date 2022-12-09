@@ -213,7 +213,7 @@ class HDMIMatrixZone(MediaPlayerEntity):
         if source not in self._source_name_id:
             return
         idx = self._source_name_id[source]
-        _LOGGER.debug('Setting zone %d source to %s', self._zone_id, idx)
+        _LOGGER.debug('Setting zone %d source to %s using api_mode %d', self._zone_id, idx, self._api_mode)
             
         if self._api_mode == 1:
             try:
