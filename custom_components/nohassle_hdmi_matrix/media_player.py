@@ -217,7 +217,7 @@ class HDMIMatrixZone(MediaPlayerEntity):
             
         if self._api_mode == 1:
             try:
-                data = urllib.parse.urlencode({'o' + self._zone_id: idx}}).encode('utf-8')
+                data = urllib.parse.urlencode({'o' + self._zone_id: idx}).encode('utf-8')
                 req =  urllib.request.Request('http://{self._hdmi_host}/video.set', data=data)
                 urllib.request.urlopen(req)
             except:
